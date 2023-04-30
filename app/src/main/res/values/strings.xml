@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">HomePet</string>
+    <string name="welcome">Добро пожаловать,\nдруг!</string>
+    <string name="login_name">Логин</string>
+    <string name="password_name">Пароль</string>
+    <string name="btn_login">Войти</string>
+    <string name="btn_remember">Не помню пароль</string>
+    <string name="my_pet_text">Мои питомцы</string>
+    <string name="add">Добавить</string>
+    <string name="delete">Удалить</string>
+    <string name="all">Все</string>
+    <string name="owner_of_the_animal">Информация о хозяине</string>
+    <string name="animal_info">Информация о питомце</string>
+    <string name="last_name">Фамилия</string>
+    <string name="first_name">Имя</string>
+    <string name="patronymic">Отчество</string>
+    <string name="period">Период</string>
+    <string name="period_from">От</string>
+    <string name="period_to">До</string>
+    <string name="phone">Номер телефона</string>
+    <string name="btn_next_animal">Далее</string>
+    <string name="prefix_phone">+7</string>
+    <string name="help_text_login">Только английские быквы (от 2 до 10)</string>
+    <string name="help_text_pass">Максимум 4 цифры</string>
+    <string name="download_photo">Загрузить фото</string>
+    <string name="pet_name">Кличка</string>
+    <string name="pet_sex">Пол</string>
+    <string name="pet_description">Описание</string>
+    <string name="pet_girl">Ж</string>
+    <string name="pet_boy">М</string>
+    <string name="save_data">Сохранить</string>
+</resources>
