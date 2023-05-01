@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -44,86 +45,44 @@ public class MainActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myPetActivity();
+
+                String login_user = login.getText().toString().trim();
+                String password_user = password.getText().toString().trim();
+                DBHelper dbase = new DBHelper(MainActivity.this);
+                //String remember_user_name = "";
+
+                if (!login_user.isEmpty() && !password_user.isEmpty()) {
+                    if (login_user.length() >= 2 && login_user.length() <= 10 && password_user.length() == 4){
+                        Boolean chekusername = dbase.chekUsername(login_user);
+                        if (!chekusername) {
+                            dbase.addUser(login_user, password_user);
+                            Toast.makeText(MainActivity.this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
+                            myPetActivity();
+                        }else {
+                            //login.setText(login_user);
+                            Boolean chekuser = dbase.chekUser(login_user, password_user);
+                            if (chekuser) {
+                                myPetActivity();
+                            }else {
+                                Toast.makeText(MainActivity.this, "Неверный логин или пароль", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                    }else {
+                        Toast.makeText(MainActivity.this, "Некорректный логин и пароль", Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    Toast.makeText(MainActivity.this, "Все поля должны быть заполнены", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
-//        String lines = "";
-//        try {
-//            FileInputStream fileInput_login_auth = openFileInput("login.txt");
-//            InputStreamReader reader_auth = new InputStreamReader(fileInput_login_auth);
-//            BufferedReader bR_auth = new BufferedReader(reader_auth);
-//            lines = bR_auth.readLine();
-//            login.setText(lines);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            makeText(MainActivity.this, "Ошибка с файлом", Toast.LENGTH_SHORT).show();
-//        }
-
-
-//        btn_login.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String user_login = login.getText().toString();
-//                if (user_login.length() >= 2) {
-//
-//                    String user_password = password.getText().toString();
-//                    //String new_string = user_login + user_password;
-//                    //Toast.makeText(MainActivity.this, new_string, Toast.LENGTH_LONG).show();
-//
-//                    try {
-//
-//                        FileInputStream fileInput_login1 = openFileInput("login.txt");
-//                        FileInputStream fileInput_password1 = openFileInput("password.txt");
-//                        InputStreamReader reader1 = new InputStreamReader(fileInput_login1);
-//                        BufferedReader bR = new BufferedReader(reader1);
-//                        InputStreamReader reader2 = new InputStreamReader(fileInput_password1);
-//                        BufferedReader bR2 = new BufferedReader(reader2);
-//
-//                        String lines_name = "";
-//                        String lines_password = "";
-//                        while (((lines_name = bR.readLine()) != null) && (
-//                                (lines_password = bR2.readLine()) != null
-//                        )) {
-//                            if (lines_name.equalsIgnoreCase(user_login)) {
-//
-//
-//                                if (lines_password.equalsIgnoreCase(user_password)) {
-//                                    makeText(MainActivity.this, "Успешный вход (пароль и логин совпали))", Toast.LENGTH_LONG).show();
-//                                    myPetActivity();
-//                                } else {
-//                                    makeText(MainActivity.this, "Пользователь с таким логином уже существует", Toast.LENGTH_LONG).show();
-//                                    break;
-//                                }
-//                            } else {
-//                                FileOutputStream fileOutput_login1 = openFileOutput("login.txt", MODE_PRIVATE);
-//                                fileOutput_login1.write(user_login.getBytes());
-//                                FileOutputStream fileOutput_password = openFileOutput("password.txt", MODE_PRIVATE);
-//                                fileOutput_password.write(user_password.getBytes());
-//                                fileOutput_login1.close();
-//                                fileOutput_password.close();
-//                                makeText(MainActivity.this, "Регистрация прошла успешно", Toast.LENGTH_LONG).show();
-//                                myPetActivity();
-//                                //login.setText("");
-//                                //password.setText("");
-//                            }
-//                        }
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                        makeText(MainActivity.this, "Ошибка с файлом", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//                else {
-//                    makeText(MainActivity.this, "Минимальное кол-во символов в логине 2", Toast.LENGTH_LONG).show();
-//                }
-//            }
-//        });
-                btn_remember.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dontRememberAlert();
-                    }
-                });
+        btn_remember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dontRememberAlert();
+            }
+        });
     }
 
 

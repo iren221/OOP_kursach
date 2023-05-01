@@ -16,9 +16,14 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "DBPet";
     public static final String TABLE_NAME = "Petdb";
+    public static final String TABLE_NAME2 = "Userdb";
 
     public static final String KEY_ID = "_id";
+    public static final String KEY_ID_USER = "_id";
+
     public static final String KEY_NAME = "name";
+    public static final String KEY_NAME_USER = "name_user";
+    public static final String KEY_PASSWORD_USER = "password_user";
     public static final String KEY_LASTNAME = "last_name";
     public static final String KEY_P = "p";
     public static final String KEY_PHONE = "phone";
@@ -49,13 +54,19 @@ public class DBHelper extends SQLiteOpenHelper {
                 KEY_PET_DES + " TEXT);";
         db.execSQL(query);
 
+        String query2 = "CREATE TABLE " + TABLE_NAME2 +
+                " (" + KEY_ID_USER + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                KEY_NAME_USER + " TEXT, " +
+                KEY_PASSWORD_USER + " TEXT);";
+        db.execSQL(query2);
+
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
-
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME2);
         onCreate(db);
     }
     void addPet(String last_name, String name, String p, String phone, String from_time, String to_time, String pet_name, String description, String photo) {
@@ -76,6 +87,38 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         else {
             Toast.makeText(context, "GOOD", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    void addUser(String name_user, String password) {
+        SQLiteDatabase db2 = this.getWritableDatabase();
+        ContentValues cv2 = new ContentValues();
+        cv2.put(KEY_NAME_USER, name_user);
+        cv2.put(KEY_PASSWORD_USER, password);
+        long result = db2.insert(TABLE_NAME2, null, cv2);
+        if (result == -1) {
+            Toast.makeText(context, "ERROR REGISTRATION", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(context, "GOOD REGISTRATION", Toast.LENGTH_SHORT).show();
+        }
+    }
+    Boolean chekUsername(String name_user){ //для регистрации
+        SQLiteDatabase db2 = this.getWritableDatabase();
+        Cursor cursor = db2.rawQuery("SELECT * FROM users WHERE name_user = ?", new String[] {name_user});
+        if (cursor.getCount() > 0) {
+            return true; //имя существует
+        }else {
+            return false;
+        }
+    }
+    Boolean chekUser(String name_user, String password) { //это для входа
+        SQLiteDatabase db2 = this.getWritableDatabase();
+        Cursor cursor = db2.rawQuery("SELECT * FROM users WHERE name_user = ? and password = ?", new String[] {name_user, password});
+        if (cursor.getCount() > 0) {
+            return true;
+        }else {
+            return false;
         }
     }
     Cursor readAllData() {
