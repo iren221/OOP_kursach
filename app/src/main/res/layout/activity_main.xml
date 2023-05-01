@@ -8,7 +8,18 @@
     android:background="@color/bg"
     >
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bg_image" />
+
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="20dp"
@@ -25,39 +36,34 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginTop="60dp"
+            android:fontFamily="@font/comfortaa_bold"
             android:text="@string/app_name"
-            android:textColor="@color/black"
+            android:textColor="@color/color3"
             android:textSize="50sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/welcome"
-            android:textColor="@color/welcome"
-            android:textSize="30sp"
-            android:textStyle="bold"
 
-            />
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="100dp"
             android:layout_marginEnd="20dp"
             android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:hint="@string/login_name"
             android:inputType="textPersonName"
             android:maxLength="10"
+            android:textColorHint="@color/color5"
             app:counterEnabled="true"
             app:counterMaxLength="10"
             app:errorEnabled="true"
             app:helperText="@string/help_text_login"
-            app:startIconDrawable="@drawable/name">
+            app:helperTextTextColor="@color/color5"
+            app:hintTextAppearance="@style/MyHintText"
+            app:startIconDrawable="@drawable/name"
+            app:boxStrokeWidth="2dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/login"
@@ -67,18 +73,21 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="20dp"
             android:hint="@string/password_name"
             android:maxLength="4"
             app:endIconMode="password_toggle"
             app:errorEnabled="true"
             app:helperText="@string/help_text_pass"
-            app:startIconDrawable="@drawable/password">
+            app:helperTextTextColor="@color/color5"
+            app:hintTextAppearance="@style/MyHintText"
+            android:textColorHint="@color/color5"
+            app:startIconDrawable="@drawable/password"
+            app:boxStrokeWidth="2dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
@@ -87,19 +96,21 @@
                 android:inputType="numberPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
             android:text="@string/btn_login"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="@color/bg"
+            android:background="@drawable/custom_btn" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_remember"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -108,7 +119,9 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:text="@string/btn_remember"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="@color/color5"
+            android:background="@drawable/custom_btn"/>
 
     </LinearLayout>
 

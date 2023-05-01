@@ -4,6 +4,7 @@ import static android.widget.Toast.makeText;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -27,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
     TextInputEditText login, password;
 
-    Button btn_login;
-    Button btn_remember;
+    AppCompatButton btn_login;
+    AppCompatButton btn_remember;
 
 
     @SuppressLint("MissingInflatedId")

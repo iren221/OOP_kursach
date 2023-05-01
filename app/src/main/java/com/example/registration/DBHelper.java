@@ -103,16 +103,16 @@ public class DBHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "GOOD REGISTRATION", Toast.LENGTH_SHORT).show();
         }
     }
-    Boolean chekUsername(String name_user){ //для регистрации
+    Boolean chekUsername(String name_user){
         SQLiteDatabase db2 = this.getWritableDatabase();
         Cursor cursor = db2.rawQuery("SELECT * FROM users WHERE name_user = ?", new String[] {name_user});
         if (cursor.getCount() > 0) {
-            return true; //имя существует
+            return true;
         }else {
             return false;
         }
     }
-    Boolean chekUser(String name_user, String password) { //это для входа
+    Boolean chekUser(String name_user, String password) {
         SQLiteDatabase db2 = this.getWritableDatabase();
         Cursor cursor = db2.rawQuery("SELECT * FROM users WHERE name_user = ? and password = ?", new String[] {name_user, password});
         if (cursor.getCount() > 0) {
