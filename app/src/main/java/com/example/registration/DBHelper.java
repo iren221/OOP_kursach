@@ -32,6 +32,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String KEY_PET_NAME = "pet_name";
     public static final String KEY_PET_DES = "description";
     public static final String KEY_PET_PHOTO = "photo";
+    public static final String KEY_PET_GENDER = "gender";
 
 
     public DBHelper(@Nullable Context context) {
@@ -51,6 +52,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 KEY_TO_TIME + " TEXT, " +
                 KEY_PET_NAME + " TEXT, " +
                 KEY_PET_PHOTO + " TEXT, " +
+                KEY_PET_GENDER + " TEXT, " +
                 KEY_PET_DES + " TEXT);";
         db.execSQL(query);
 
@@ -69,7 +71,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME2);
         onCreate(db);
     }
-    void addPet(String last_name, String name, String p, String phone, String from_time, String to_time, String pet_name, String description, String photo) {
+    void addPet(String last_name, String name, String p, String phone, String from_time, String to_time, String pet_name, String description, String photo, String gender) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(KEY_LASTNAME, last_name);
@@ -79,6 +81,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(KEY_FROM_TIME, from_time);
         cv.put(KEY_TO_TIME, to_time);
         cv.put(KEY_PET_NAME, pet_name);
+        cv.put(KEY_PET_GENDER, gender);
         cv.put(KEY_PET_PHOTO, photo);
         cv.put(KEY_PET_DES, description);
         long result = db.insert(TABLE_NAME, null, cv);
@@ -90,11 +93,11 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    void addUser(String name_user, String password) {
+    void addUser(String name_user, String password_user) {
         SQLiteDatabase db2 = this.getWritableDatabase();
         ContentValues cv2 = new ContentValues();
         cv2.put(KEY_NAME_USER, name_user);
-        cv2.put(KEY_PASSWORD_USER, password);
+        cv2.put(KEY_PASSWORD_USER, password_user);
         long result = db2.insert(TABLE_NAME2, null, cv2);
         if (result == -1) {
             Toast.makeText(context, "ERROR REGISTRATION", Toast.LENGTH_SHORT).show();
@@ -105,16 +108,16 @@ public class DBHelper extends SQLiteOpenHelper {
     }
     Boolean chekUsername(String name_user){
         SQLiteDatabase db2 = this.getWritableDatabase();
-        Cursor cursor = db2.rawQuery("SELECT * FROM users WHERE name_user = ?", new String[] {name_user});
+        Cursor cursor = db2.rawQuery("SELECT * FROM " + TABLE_NAME2 + " WHERE name_user = ?", new String[] {name_user});
         if (cursor.getCount() > 0) {
             return true;
         }else {
             return false;
         }
     }
-    Boolean chekUser(String name_user, String password) {
+    Boolean chekUser(String name_user, String password_user) {
         SQLiteDatabase db2 = this.getWritableDatabase();
-        Cursor cursor = db2.rawQuery("SELECT * FROM users WHERE name_user = ? and password = ?", new String[] {name_user, password});
+        Cursor cursor = db2.rawQuery("SELECT * FROM " + TABLE_NAME2 + " WHERE name_user = ? and password_user = ?", new String[] {name_user, password_user});
         if (cursor.getCount() > 0) {
             return true;
         }else {

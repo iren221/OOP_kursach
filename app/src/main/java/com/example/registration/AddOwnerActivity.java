@@ -2,6 +2,7 @@ package com.example.registration;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -22,7 +23,7 @@ public class AddOwnerActivity extends AppCompatActivity {
 
     TextInputEditText last_name, name, patronymic, phone;
     TextView date_from, date_to;
-    Button btn_next_animal_registration, btn_date_from, btn_date_to;
+    AppCompatButton btn_next_animal_registration, btn_date_from, btn_date_to;
 
     Calendar date_from_cl = Calendar.getInstance();
     Calendar date_to_cl = Calendar.getInstance();

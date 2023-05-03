@@ -1,6 +1,7 @@
 package com.example.registration;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 public class MyPetActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    Button add_btn;
+    AppCompatButton add_btn;
     DBHelper my_db;
     ArrayList<String> pet_name;
     ArrayList<Uri> pet_photo;

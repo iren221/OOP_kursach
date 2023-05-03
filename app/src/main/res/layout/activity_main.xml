@@ -16,7 +16,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bg_image" />
+        app:srcCompat="@drawable/bg_image2" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="279dp"
+        android:layout_height="167dp"
+        android:layout_marginTop="620dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/dog2" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -49,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="80dp"
             android:layout_marginEnd="20dp"
             android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:hint="@string/login_name"
@@ -61,7 +71,7 @@
             app:errorEnabled="true"
             app:helperText="@string/help_text_login"
             app:helperTextTextColor="@color/color5"
-            app:hintTextAppearance="@style/MyHintText"
+            app:hintTextAppearance="@style/MyHintStyle"
             app:startIconDrawable="@drawable/name"
             app:boxStrokeWidth="2dp">
 
@@ -106,6 +116,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
             android:text="@string/btn_login"
+            android:fontFamily="@font/comfortaa_bold"
             android:textSize="20sp"
             android:textColor="@color/bg"
             android:background="@drawable/custom_btn" />
@@ -119,8 +130,9 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:text="@string/btn_remember"
+            android:fontFamily="@font/comfortaa_bold"
             android:textSize="20sp"
-            android:textColor="@color/color5"
+            android:textColor="@color/bg"
             android:background="@drawable/custom_btn"/>
 
     </LinearLayout>
