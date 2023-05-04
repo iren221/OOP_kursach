@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,13 +22,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     Context context;
     ArrayList<String> pet_name;
+    ArrayList<String> pet_id;
     ArrayList<Uri> pet_photo;
 
     CustomAdapter(Context context,
-                  ArrayList<String> pet_name, ArrayList<Uri> pet_photo) {
+                  ArrayList<String> pet_name, ArrayList<Uri> pet_photo, ArrayList<String> pet_id) {
         this.context = context;
         this.pet_name = pet_name;
         this.pet_photo = pet_photo;
+        this.pet_id = pet_id;
 
 
     }
@@ -50,6 +53,20 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             e.printStackTrace();
         }
         holder.name_pet.setText(String.valueOf(pet_name.get(position)));
+        holder.id_pet.setText(String.valueOf(pet_id.get(position)));
+
+        DBHelper dbase = new DBHelper(context.getApplicationContext());
+
+        holder.photo_pet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context.getApplicationContext(), "You clicked" + holder.id_pet.getText().toString(), Toast.LENGTH_SHORT).show();
+                Boolean chekpet = dbase.chekPet(holder.id_pet.getText().toString());
+                if (chekpet) {
+                    Toast.makeText(context.getApplicationContext(), "Успешно", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
@@ -59,12 +76,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView name_pet;
+        TextView name_pet, id_pet;
         ImageView photo_pet;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             name_pet = itemView.findViewById(R.id.text_pet_name);
+            id_pet = itemView.findViewById(R.id.id_pet);
             photo_pet = itemView.findViewById(R.id.image_photo_pet);
         }
     }

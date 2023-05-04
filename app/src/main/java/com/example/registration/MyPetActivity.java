@@ -16,6 +16,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,8 +27,10 @@ public class MyPetActivity extends AppCompatActivity {
     AppCompatButton add_btn;
     DBHelper my_db;
     ArrayList<String> pet_name;
+    ArrayList<String> pet_id;
     ArrayList<Uri> pet_photo;
     CustomAdapter customAdapter;
+    //ImageView image_photo_pet;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -37,6 +40,7 @@ public class MyPetActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
         add_btn = findViewById(R.id.btn_add);
+        //image_photo_pet = findViewById(R.id.image_photo_pet);
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,13 +51,21 @@ public class MyPetActivity extends AppCompatActivity {
 
         my_db = new DBHelper(MyPetActivity.this);
         pet_name = new ArrayList<>();
+        pet_id = new ArrayList<>();
         pet_photo = new ArrayList<>();
 
         storeDateInArrays();
 
-        customAdapter = new CustomAdapter(this, pet_name, pet_photo);
+        customAdapter = new CustomAdapter(this, pet_name, pet_photo, pet_id);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MyPetActivity.this));
+
+//        image_photo_pet.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(MyPetActivity.this, "Вы нажали на объект" + pet_id, Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     void storeDateInArrays() {
@@ -64,6 +76,7 @@ public class MyPetActivity extends AppCompatActivity {
         else {
             while (cursor.moveToNext()) {
                 pet_name.add(cursor.getString(7));
+                pet_id.add(cursor.getString(0));
                 final Uri uri = Uri.parse(cursor.getString(8));
                 Log.i("selected_image",uri.toString());
                 pet_photo.add(uri);

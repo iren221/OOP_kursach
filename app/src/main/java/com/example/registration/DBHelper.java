@@ -124,6 +124,16 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+
+    Boolean chekPet(String id_pet) {
+        SQLiteDatabase db2 = this.getWritableDatabase();
+        Cursor cursor = db2.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE _id = id_pet", new String[] {id_pet});
+        if (cursor.getCount() > 0) {
+            return true;
+        }else {
+            return false;
+        }
+    }
     Cursor readAllData() {
         String query = "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
