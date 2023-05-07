@@ -28,7 +28,7 @@ public class MyPetActivity extends AppCompatActivity {
     DBHelper my_db;
     ArrayList<String> pet_name;
     ArrayList<String> pet_id;
-    ArrayList<Uri> pet_photo;
+    ArrayList<String> pet_photo;
     CustomAdapter customAdapter;
     //ImageView image_photo_pet;
 
@@ -77,7 +77,7 @@ public class MyPetActivity extends AppCompatActivity {
             while (cursor.moveToNext()) {
                 pet_name.add(cursor.getString(7));
                 pet_id.add(cursor.getString(0));
-                final Uri uri = Uri.parse(cursor.getString(8));
+                final String uri = cursor.getString(8);
                 Log.i("selected_image",uri.toString());
                 pet_photo.add(uri);
 //                Bitmap bmp = BitmapFactory.decodeByteArray(image, 0 , image.length);

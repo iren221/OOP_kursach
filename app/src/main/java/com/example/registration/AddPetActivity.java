@@ -19,7 +19,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 
@@ -32,12 +37,16 @@ public class AddPetActivity extends AppCompatActivity {
     ImageView image_pet;
     Uri selectedImage;
 
+    FirebaseStorage storage;
+    StorageReference storageReference;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_pet);
-
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
         pet_name = findViewById(R.id.textPetName);
         pet_description = findViewById(R.id.textPetDescription);
         btn_save_data = findViewById(R.id.btn_save_data);
@@ -63,8 +72,10 @@ public class AddPetActivity extends AppCompatActivity {
                 String gender = radioButton.getText().toString().trim();
 
                 if (!name_pet.isEmpty()) {
+                    saveImage();
                     DBHelper dbase = new DBHelper(AddPetActivity.this);
-                    dbase.addPet(last_name, name, patronymic, phone, date_from, date_to, name_pet, pet_des, selectedImage.toString(), gender);
+                    final String imageUri = selectedImage.getLastPathSegment();
+                    dbase.addPet(last_name, name, patronymic, phone, date_from, date_to, name_pet, pet_des, imageUri, gender);
                     Toast.makeText(AddPetActivity.this, "Данные сохранены", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(AddPetActivity.this, MyPetActivity.class);
                     startActivity(intent);
@@ -87,6 +98,23 @@ public class AddPetActivity extends AppCompatActivity {
         intentChooser.setType("image/*");
         //intentChooser.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intentChooser, 1);
+    }
+
+    private void saveImage() {
+        final StorageReference ref = storageReference.child("images/" + selectedImage.getLastPathSegment());
+        ref.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        Toast.makeText(getApplicationContext(), "Uploaded", Toast.LENGTH_SHORT).show();
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(Exception e) {
+                        Toast.makeText(getApplicationContext(), "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     @Override
