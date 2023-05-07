@@ -46,18 +46,18 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull CustomAdapter.MyViewHolder holder, int position) {
         final Bitmap bitmap;
-        try {
-            bitmap = MediaStore.Images.Media.getBitmap(this.context.getContentResolver(), pet_photo.get(position));
-            holder.photo_pet.setImageBitmap(bitmap);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+////            bitmap = MediaStore.Images.Media.getBitmap(this.context.getContentResolver(), pet_photo.get(position));
+////            holder.photo_pet.setImageBitmap(bitmap);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         holder.name_pet.setText(String.valueOf(pet_name.get(position)));
         holder.id_pet.setText(String.valueOf(pet_id.get(position)));
 
         DBHelper dbase = new DBHelper(context.getApplicationContext());
 
-        holder.photo_pet.setOnClickListener(new View.OnClickListener() {
+        holder.name_pet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(context.getApplicationContext(), "You clicked" + holder.id_pet.getText().toString(), Toast.LENGTH_SHORT).show();
