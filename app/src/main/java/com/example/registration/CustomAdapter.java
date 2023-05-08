@@ -5,8 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +20,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
@@ -27,11 +37,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     TextView name_owner_one, last_name_owner_one, patronymic_owner_one, period_from_one, period_to_one, phone_owner_one, nickname_pet_one, gender_pet_one, description_pet_one;
     ArrayList<String> pet_name;
     ArrayList<String> pet_id;
-    ArrayList<Uri> pet_photo;
+    ArrayList<String> pet_photo;
+
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageReference = storage.getReference();
     String name_owner, last_name_owner, patronymic_owner, period_to, period_from, phone_owner, nickname_pet, gender_pet, description_pet;
 
     CustomAdapter(Context context,
-                  ArrayList<String> pet_name, ArrayList<Uri> pet_photo, ArrayList<String> pet_id) {
+                  ArrayList<String> pet_name, ArrayList<String> pet_photo, ArrayList<String> pet_id) {
         this.context = context;
         this.pet_name = pet_name;
         this.pet_photo = pet_photo;
@@ -51,12 +64,19 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull CustomAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         final Bitmap bitmap;
-//        try {
-////            bitmap = MediaStore.Images.Media.getBitmap(this.context.getContentResolver(), pet_photo.get(position));
-////            holder.photo_pet.setImageBitmap(bitmap);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        final String images = pet_photo.get(position);
+        Log.e("images", images);
+        final StorageReference itemStorage = storageReference.child("images/" + pet_photo.get(position));
+
+        itemStorage.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                //task.getResult();
+               // Toast.makeText(context, "Картинка загружена", Toast.LENGTH_SHORT).show();
+                Glide.with(context).load(task.getResult()).into(holder.photo_pet);
+//                holder.photo_pet.setImageURI(task.getResult());
+            }
+        });
         holder.name_pet.setText(String.valueOf(pet_name.get(position)));
         //holder.id_pet.setText(String.valueOf(pet_id.get(position)));
 

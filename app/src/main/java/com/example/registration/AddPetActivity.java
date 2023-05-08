@@ -1,6 +1,7 @@
 package com.example.registration;
 
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -15,13 +16,24 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCanceledListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 
 public class AddPetActivity extends AppCompatActivity {
 
@@ -32,18 +44,25 @@ public class AddPetActivity extends AppCompatActivity {
     ImageView image_pet;
     Uri selectedImage;
 
+    ProgressBar progressBar;
+
+    FirebaseStorage storage;
+    StorageReference storageReference;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_pet);
-
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
         pet_name = findViewById(R.id.textPetName);
         pet_description = findViewById(R.id.textPetDescription);
         btn_save_data = findViewById(R.id.btn_save_data);
         btn_download_photo = findViewById(R.id.btn_download_photo);
         image_pet = findViewById(R.id.image_pet);
         radioGroup = findViewById(R.id.radio_group);
+        progressBar=findViewById(R.id.progressBar);
 
 
         btn_save_data.setOnClickListener(new View.OnClickListener() {
@@ -63,11 +82,54 @@ public class AddPetActivity extends AppCompatActivity {
                 String gender = radioButton.getText().toString().trim();
 
                 if (!name_pet.isEmpty()) {
-                    DBHelper dbase = new DBHelper(AddPetActivity.this);
-                    dbase.addPet(last_name, name, patronymic, phone, date_from, date_to, name_pet, pet_des, selectedImage.toString(), gender);
-                    Toast.makeText(AddPetActivity.this, "Данные сохранены", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(AddPetActivity.this, MyPetActivity.class);
-                    startActivity(intent);
+                    Log.i("fuuucking_log", "wtf");
+                    final StorageReference ref = storageReference.child("images/"+selectedImage.getLastPathSegment());
+                    Log.i("exceptionsss", "before request");
+                    ref.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener() {
+                                @Override
+                                public void onSuccess(Object o) {
+                                    Log.i("exceptionsss", "allways okey");
+                                    Toast.makeText(getApplicationContext(), "Uploaded", Toast.LENGTH_SHORT).show();
+                                    DBHelper dbase = new DBHelper(AddPetActivity.this);
+                                    final String imageUri = selectedImage.getLastPathSegment();
+                                    dbase.addPet(last_name, name, patronymic, phone, date_from, date_to, name_pet, pet_des, imageUri, gender);
+                                    Toast.makeText(AddPetActivity.this, "Данные сохранены", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(AddPetActivity.this, MyPetActivity.class);
+                                    startActivity(intent);
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(Exception e) {
+                                    showView();
+                                    Log.i("exceptionsss", e.getMessage());
+                                    Toast.makeText(getApplicationContext(), "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnCanceledListener(new OnCanceledListener() {
+                                @Override
+                                public void onCanceled() {
+                                    showView();
+                                    Log.i("exceptionsss", "cancelled");
+                                }
+                            }).addOnProgressListener(new OnProgressListener() {
+                                @Override
+                                public void onProgress(@NonNull Object snapshot) {
+                                    showProgress();
+                                    Log.i("exceptionsss", "progress");
+                                }
+                            }).addOnCompleteListener(new OnCompleteListener() {
+                                @Override
+                                public void onComplete(@NonNull Task task) {
+                                    Log.i("exceptionsss", "compleete");
+                                }
+                            });
+//                    Log.i("fuuucking log", "wtf2");
+//                    DBHelper dbase = new DBHelper(AddPetActivity.this);
+//                    final String imageUri = selectedImage.getLastPathSegment();
+//                    dbase.addPet(last_name, name, patronymic, phone, date_from, date_to, name_pet, pet_des, imageUri, gender);
+//                    Toast.makeText(AddPetActivity.this, "Данные сохранены", Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(AddPetActivity.this, MyPetActivity.class);
+//                    startActivity(intent);
                 } else {
                     Toast.makeText(AddPetActivity.this, "Error", Toast.LENGTH_SHORT).show();
                 }
@@ -82,11 +144,56 @@ public class AddPetActivity extends AppCompatActivity {
         });
     }
 
+    private  void showProgress(){
+        btn_save_data.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    private  void showView(){
+        btn_save_data.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
+    }
+
     private void getImage() {
         Intent intentChooser = new Intent(Intent.ACTION_PICK);
         intentChooser.setType("image/*");
         //intentChooser.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intentChooser, 1);
+    }
+
+    private void saveImage() {
+        final StorageReference ref = storageReference.child(selectedImage.getLastPathSegment());
+        Log.i("exceptionsss", "before request");
+        ref.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        Log.i("exceptionsss", "allways okey");
+                        Toast.makeText(getApplicationContext(), "Uploaded", Toast.LENGTH_SHORT).show();
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(Exception e) {
+                        Log.i("exceptionsss", e.getMessage());
+                        Toast.makeText(getApplicationContext(), "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnCanceledListener(new OnCanceledListener() {
+                    @Override
+                    public void onCanceled() {
+                        Log.i("exceptionsss", "cancelled");
+                    }
+                }).addOnProgressListener(new OnProgressListener() {
+                    @Override
+                    public void onProgress(@NonNull Object snapshot) {
+                        Log.i("exceptionsss", "progress");
+                    }
+                }).addOnCompleteListener(new OnCompleteListener() {
+                    @Override
+                    public void onComplete(@NonNull Task task) {
+                        Log.i("exceptionsss", "compleete");
+                    }
+                });
     }
 
     @Override

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddPetActivity"
-    android:background="@color/bg">
+    android:background="@color/bg"
+    tools:context=".AddPetActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -44,8 +43,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
 
             <FrameLayout
                 android:layout_width="150dp"
@@ -68,22 +67,22 @@
                 android:layout_marginEnd="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/custom_btn"
-                android:textColor="@color/bg"
                 android:fontFamily="@font/comfortaa_bold"
                 android:text="@string/download_photo"
-                android:textSize="15sp"/>
+                android:textColor="@color/bg"
+                android:textSize="15sp" />
 
         </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:textColorHint="@color/color5"
-            app:boxStrokeWidth="2dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:textColorHint="@color/color5"
+            app:boxStrokeWidth="2dp"
             app:counterEnabled="true"
             app:counterMaxLength="10"
             app:errorEnabled="true"
-            android:layout_marginBottom="20dp"
             app:hintTextAppearance="@style/MyHintStyle">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -93,24 +92,26 @@
                 android:hint="@string/pet_name"
                 android:inputType="text"
                 android:maxLength="20" />
+
         </com.google.android.material.textfield.TextInputLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:fontFamily="@font/comfortaa_bold"
                 android:gravity="center"
                 android:text="@string/pet_sex"
-                android:textSize="35sp"
-                android:fontFamily="@font/comfortaa_bold"
-                android:textColor="@color/color3"/>
+                android:textColor="@color/color3"
+                android:textSize="35sp" />
 
             <RadioGroup
                 android:id="@+id/radio_group"
@@ -125,20 +126,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="@string/pet_girl"
-                    android:textSize="30sp"
                     android:fontFamily="@font/comfortaa_bold"
-                    android:textColor="@color/color3" />
+                    android:text="@string/pet_girl"
+                    android:textColor="@color/color3"
+                    android:textSize="30sp" />
 
                 <RadioButton
                     android:id="@+id/radioButton_boy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="@string/pet_boy"
-                    android:textSize="30sp"
                     android:fontFamily="@font/comfortaa_bold"
-                    android:textColor="@color/color3"/>
+                    android:text="@string/pet_boy"
+                    android:textColor="@color/color3"
+                    android:textSize="30sp" />
 
             </RadioGroup>
 
@@ -146,15 +147,15 @@
 
         <com.google.android.material.textfield.TextInputLayout
 
-            android:textColorHint="@color/color5"
-            app:boxStrokeWidth="2dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:textColorHint="@color/color5"
+            app:boxStrokeWidth="2dp"
             app:counterEnabled="true"
             app:counterMaxLength="50"
             app:errorEnabled="true"
-            app:hintTextAppearance="@style/MyHintStyle"
-            android:layout_marginBottom="40dp">
+            app:hintTextAppearance="@style/MyHintStyle">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textPetDescription"
@@ -165,15 +166,24 @@
                 android:maxLength="100" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            tools:ignore="MissingConstraints" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_save_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/save_data"
             android:background="@drawable/custom_btn"
+            android:fontFamily="@font/comfortaa_bold"
+            android:text="@string/save_data"
             android:textColor="@color/bg"
-            android:textSize="20sp"
-            android:fontFamily="@font/comfortaa_bold"/>
+            android:textSize="20sp" />
+
     </LinearLayout>
 
 </RelativeLayout>

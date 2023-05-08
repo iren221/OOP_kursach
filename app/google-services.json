@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "284159648557",
+    "project_id": "ira-courses-work",
+    "storage_bucket": "ira-courses-work.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284159648557:android:c6a0ee31f60f8f9e1969a4",
+        "android_client_info": {
+          "package_name": "com.example.registration"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "284159648557-qm77hj1klk1cr6vmbvg9gmu0gdug7haj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmIBJ-ioSmLanv5GAeLfA8-cHeNtrXr-w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "284159648557-qm77hj1klk1cr6vmbvg9gmu0gdug7haj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
