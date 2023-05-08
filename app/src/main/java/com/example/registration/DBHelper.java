@@ -19,7 +19,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME2 = "Userdb";
 
     public static final String KEY_ID = "_id";
-    public static final String KEY_ID_USER = "_id";
+    public static final String KEY_ID_USER = "_id_user";
 
     public static final String KEY_NAME = "name";
     public static final String KEY_NAME_USER = "name_user";
@@ -127,7 +127,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     Boolean chekPet(String id_pet) {
         SQLiteDatabase db2 = this.getWritableDatabase();
-        Cursor cursor = db2.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE _id = id_pet", new String[] {id_pet});
+        Cursor cursor = db2.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE _id = ? " , new String[] {id_pet});
         if (cursor.getCount() > 0) {
             return true;
         }else {

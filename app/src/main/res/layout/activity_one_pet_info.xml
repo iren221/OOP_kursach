@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OnePetInfo">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bg_image2"/>
+
+    <!--<ImageView
+        android:id="@+id/image_back"
+        android:layout_width="44dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/nickname"
+        app:layout_constraintHorizontal_bias="0.285"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/keyboard_backspace" />-->
+
+    <ImageButton
+        android:id="@+id/imageButton_back"
+        android:layout_width="39dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="16dp"
+        android:background=""
+        app:layout_constraintEnd_toStartOf="@+id/nickname"
+        app:layout_constraintHorizontal_bias="0.262"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/keyboard_backspace" />
+
+    <TextView
+        android:id="@+id/nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="40dp"
+        android:gravity="center"
+        android:text=""
+        android:background="@drawable/back"
+        android:textSize="40sp"
+        android:fontFamily="@font/comfortaa_bold"
+        android:textColor="@color/bg"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/owner"
+                android:textSize="30sp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textColor="@color/color3"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:background="@drawable/back"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/first_name"
+                android:textSize="25sp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textColor="@color/color3"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/owner_first_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="20sp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textColor="@color/color3"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/last_name"
+                android:textSize="25sp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textColor="@color/color3"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/owner_last_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="20sp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textColor="@color/color3"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/patronymic"
+                android:textSize="25sp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textColor="@color/color3"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/owner_patronymic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="20sp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textColor="@color/color3"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/phone"
+                android:textSize="25sp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textColor="@color/color3"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/owner_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="20sp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textColor="@color/color3"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pet"
+                android:textSize="30sp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textColor="@color/color3"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:background="@drawable/back"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pet_sex"
+                android:textSize="25sp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textColor="@color/color3"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/pet_gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="20sp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textColor="@color/color3"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pet_description"
+                android:textSize="25sp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textColor="@color/color3"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/pet_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="20sp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textColor="@color/color3"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/per"
+                android:textSize="30sp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textColor="@color/color3"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:background="@drawable/back"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/period_from"
+                android:textSize="25sp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textColor="@color/color3"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/period_ot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:text=""
+                android:textColor="@color/color3"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/period_to"
+                android:textSize="25sp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textColor="@color/color3"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/period_po"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="20sp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textColor="@color/color3"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </LinearLayout>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

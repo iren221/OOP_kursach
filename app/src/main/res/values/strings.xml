@@ -29,4 +29,8 @@
     <string name="pet_girl">Ж</string>
     <string name="pet_boy">М</string>
     <string name="save_data">Сохранить</string>
+    <string name="all_inf">Информация</string>
+    <string name="owner">Владелец</string>
+    <string name="pet">Животное</string>
+    <string name="per">Период проживания</string>
 </resources>
