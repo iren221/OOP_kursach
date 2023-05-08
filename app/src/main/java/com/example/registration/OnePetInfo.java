@@ -41,7 +41,15 @@ public class OnePetInfo extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
-
-
+        Bundle arguments = getIntent().getExtras();
+        nickname.setText(arguments.get("nickname_pet").toString());
+        owner_first_name.setText(arguments.get("name_owner").toString());
+        owner_last_name.setText(arguments.get("last_name_owner").toString());
+        owner_patronymic.setText(arguments.get("patronymic_owner").toString());
+        owner_phone.setText(arguments.get("phone_owner").toString());
+        pet_gender.setText(arguments.get("gender_pet").toString());
+        pet_desc.setText(arguments.get("description_pet").toString());
+        period_ot.setText(arguments.get("period_from").toString());
+        period_po.setText(arguments.get("period_to").toString());
     }
 }

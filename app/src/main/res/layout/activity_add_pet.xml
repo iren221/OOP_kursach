@@ -155,8 +155,7 @@
             app:counterEnabled="true"
             app:counterMaxLength="50"
             app:errorEnabled="true"
-            app:hintTextAppearance="@style/MyHintStyle"
-            android:layout_marginBottom="40dp">
+            app:hintTextAppearance="@style/MyHintStyle">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textPetDescription"
@@ -181,6 +180,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/custom_btn"
             android:fontFamily="@font/comfortaa_bold"
+            android:minHeight="48dp"
             android:text="@string/save_data"
             android:textColor="@color/bg"
             android:textSize="20sp" />

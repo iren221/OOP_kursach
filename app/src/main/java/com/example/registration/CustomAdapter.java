@@ -2,6 +2,7 @@ package com.example.registration;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -82,7 +83,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
         DBHelper dbase = new DBHelper(context.getApplicationContext());
 
-        holder.name_pet.setOnClickListener(new View.OnClickListener() {
+        holder.photo_pet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(context.getApplicationContext(), "You clicked" + String.valueOf(pet_id.get(position)), Toast.LENGTH_SHORT).show();
@@ -101,12 +102,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                             period_from = cursor.getString(5);
                             period_to = cursor.getString(6);
                             nickname_pet = cursor.getString(7);
-                            description_pet = cursor.getString(9);
-                            gender_pet = cursor.getString(10);
+                            description_pet = cursor.getString(10);
+                            gender_pet = cursor.getString(9);
                             break;
                         }
                     }
                 }
+                allInf();
             }
         });
     }
@@ -127,5 +129,20 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             id_pet = itemView.findViewById(R.id.id_pet);
             photo_pet = itemView.findViewById(R.id.image_photo_pet);
         }
+    }
+
+    public void allInf(){
+
+        Intent intent1 = new Intent(context.getApplicationContext(), OnePetInfo.class);
+        intent1.putExtra("name_owner", name_owner);
+        intent1.putExtra("last_name_owner", last_name_owner);
+        intent1.putExtra("patronymic_owner", patronymic_owner);
+        intent1.putExtra("phone_owner", phone_owner);
+        intent1.putExtra("period_from", period_from);
+        intent1.putExtra("period_to", period_to);
+        intent1.putExtra("nickname_pet", nickname_pet);
+        intent1.putExtra("description_pet", description_pet);
+        intent1.putExtra("gender_pet", gender_pet);
+        context.startActivity(intent1);
     }
 }
