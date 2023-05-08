@@ -19,7 +19,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME2 = "Userdb";
 
     public static final String KEY_ID = "_id";
-    public static final String KEY_ID_USER = "_id";
+    public static final String KEY_ID_USER = "_id_user";
 
     public static final String KEY_NAME = "name";
     public static final String KEY_NAME_USER = "name_user";

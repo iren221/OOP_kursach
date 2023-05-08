@@ -1,6 +1,8 @@
 package com.example.registration;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.IOException;
@@ -21,9 +24,11 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
     Context context;
+    TextView name_owner_one, last_name_owner_one, patronymic_owner_one, period_from_one, period_to_one, phone_owner_one, nickname_pet_one, gender_pet_one, description_pet_one;
     ArrayList<String> pet_name;
     ArrayList<String> pet_id;
     ArrayList<Uri> pet_photo;
+    String name_owner, last_name_owner, patronymic_owner, period_to, period_from, phone_owner, nickname_pet, gender_pet, description_pet;
 
     CustomAdapter(Context context,
                   ArrayList<String> pet_name, ArrayList<Uri> pet_photo, ArrayList<String> pet_id) {
@@ -44,7 +49,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CustomAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         final Bitmap bitmap;
 //        try {
 ////            bitmap = MediaStore.Images.Media.getBitmap(this.context.getContentResolver(), pet_photo.get(position));
@@ -53,17 +58,34 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 //            e.printStackTrace();
 //        }
         holder.name_pet.setText(String.valueOf(pet_name.get(position)));
-        holder.id_pet.setText(String.valueOf(pet_id.get(position)));
+        //holder.id_pet.setText(String.valueOf(pet_id.get(position)));
 
         DBHelper dbase = new DBHelper(context.getApplicationContext());
 
         holder.name_pet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context.getApplicationContext(), "You clicked" + holder.id_pet.getText().toString(), Toast.LENGTH_SHORT).show();
-                Boolean chekpet = dbase.chekPet(holder.id_pet.getText().toString());
+                Toast.makeText(context.getApplicationContext(), "You clicked" + String.valueOf(pet_id.get(position)), Toast.LENGTH_SHORT).show();
+                Boolean chekpet = dbase.chekPet(pet_id.get(position));
                 if (chekpet) {
                     Toast.makeText(context.getApplicationContext(), "Успешно", Toast.LENGTH_SHORT).show();
+                    Cursor cursor = dbase.readAllData();
+                    if (cursor.getCount() == 0) {
+                        Toast.makeText(context.getApplicationContext(), "Нет данных", Toast.LENGTH_SHORT).show();
+                    }else {
+                        while (cursor.moveToNext()) {
+                            name_owner = cursor.getString(1);
+                            last_name_owner = cursor.getString(2);
+                            patronymic_owner = cursor.getString(3);
+                            phone_owner = cursor.getString(4);
+                            period_from = cursor.getString(5);
+                            period_to = cursor.getString(6);
+                            nickname_pet = cursor.getString(7);
+                            description_pet = cursor.getString(9);
+                            gender_pet = cursor.getString(10);
+                            break;
+                        }
+                    }
                 }
             }
         });
