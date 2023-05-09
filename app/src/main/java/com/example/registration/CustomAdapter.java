@@ -86,11 +86,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.photo_pet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context.getApplicationContext(), "You clicked" + String.valueOf(pet_id.get(position)), Toast.LENGTH_SHORT).show();
-                Boolean chekpet = dbase.chekPet(pet_id.get(position));
-                if (chekpet) {
-                    Toast.makeText(context.getApplicationContext(), "Успешно", Toast.LENGTH_SHORT).show();
-                    Cursor cursor = dbase.readAllData();
+                //Toast.makeText(context.getApplicationContext(), "You clicked" + String.valueOf(pet_id.get(position)), Toast.LENGTH_SHORT).show();
+                Boolean chekpet2 = dbase.chekPet2(pet_id.get(position));
+                if (chekpet2) {
+                    //Toast.makeText(context.getApplicationContext(), "Успешно", Toast.LENGTH_SHORT).show();
+                    Cursor cursor = dbase.chekPet(pet_id.get(position));
                     if (cursor.getCount() == 0) {
                         Toast.makeText(context.getApplicationContext(), "Нет данных", Toast.LENGTH_SHORT).show();
                     }else {

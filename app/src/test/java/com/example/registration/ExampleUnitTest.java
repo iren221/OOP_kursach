@@ -1,6 +1,8 @@
 package com.example.registration;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import android.content.Context;
 
 import static org.junit.Assert.*;
 

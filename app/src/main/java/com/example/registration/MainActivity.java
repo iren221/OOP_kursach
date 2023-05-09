@@ -9,6 +9,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -42,6 +43,18 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         btn_login = findViewById(R.id.btn_login);
         btn_remember = findViewById(R.id.btn_remember);
+
+        DBHelper dbase = new DBHelper(MainActivity.this);
+
+        Cursor cursor = dbase.readLastName();
+        if (cursor.getCount() == 0) {
+            Toast.makeText(MainActivity.this, "Нет данных", Toast.LENGTH_SHORT).show();
+        }else {
+            while (cursor.moveToNext()) {
+                login.setText(cursor.getString(1));
+                break;
+            }
+        }
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override

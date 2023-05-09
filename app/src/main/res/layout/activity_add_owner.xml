@@ -42,7 +42,6 @@
         <com.google.android.material.textfield.TextInputLayout
             android:textColorHint="@color/color5"
             app:boxStrokeWidth="2dp"
-            app:hintTextAppearance="@style/MyHintStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:counterEnabled="true"
@@ -53,15 +52,16 @@
                 android:id="@+id/textInputLName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:textColor="@color/color5"
                 android:hint="@string/last_name"
+                android:fontFamily="@font/comfortaa_bold"
                 android:inputType="text"
-                android:maxLength="30" />
+                android:maxLength="20" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:textColorHint="@color/color5"
             app:boxStrokeWidth="2dp"
-            app:hintTextAppearance="@style/MyHintStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:counterEnabled="true"
@@ -73,14 +73,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/first_name"
+                android:textColor="@color/color5"
                 android:inputType="text"
-                android:maxLength="20" />
+                android:fontFamily="@font/comfortaa_bold"
+                android:maxLength="10" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:textColorHint="@color/color5"
             app:boxStrokeWidth="2dp"
-            app:hintTextAppearance="@style/MyHintStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:counterEnabled="true"
@@ -92,8 +93,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/patronymic"
+                android:textColor="@color/color5"
                 android:inputType="text"
-                android:maxLength="30" />
+                android:fontFamily="@font/comfortaa_bold"
+                android:maxLength="20" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -172,15 +175,16 @@
             app:counterMaxLength="10"
             app:errorEnabled="true"
             app:prefixText="@string/prefix_phone"
-            android:textColorHint="@color/color5"
-            app:boxStrokeWidth="2dp"
-            app:hintTextAppearance="@style/MyHintStyle">
+            app:boxStrokeWidth="2dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInputPhone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/phone"
+                android:textColorHint="@color/color5"
+                android:textColor="@color/color5"
+                android:fontFamily="@font/comfortaa_bold"
                 android:inputType="text|number"
                 android:maxLength="10" />
         </com.google.android.material.textfield.TextInputLayout>

@@ -82,14 +82,14 @@ public class AddPetActivity extends AppCompatActivity {
                 String gender = radioButton.getText().toString().trim();
 
                 if (!name_pet.isEmpty()) {
-                    Log.i("fuuucking_log", "wtf");
+                    Log.i("log", "wtf");
                     final StorageReference ref = storageReference.child("images/"+selectedImage.getLastPathSegment());
                     Log.i("exceptionsss", "before request");
                     ref.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener() {
                                 @Override
                                 public void onSuccess(Object o) {
                                     Log.i("exceptionsss", "allways okey");
-                                    Toast.makeText(getApplicationContext(), "Uploaded", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Загрузка", Toast.LENGTH_SHORT).show();
                                     DBHelper dbase = new DBHelper(AddPetActivity.this);
                                     final String imageUri = selectedImage.getLastPathSegment();
                                     dbase.addPet(last_name, name, patronymic, phone, date_from, date_to, name_pet, pet_des, imageUri, gender);

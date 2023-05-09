@@ -78,20 +78,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:textColorHint="@color/color5"
             app:boxStrokeWidth="2dp"
             app:counterEnabled="true"
             app:counterMaxLength="10"
             app:errorEnabled="true"
-            app:hintTextAppearance="@style/MyHintStyle">
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textPetName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/pet_name"
+                android:textColor="@color/color5"
+                android:fontFamily="@font/comfortaa_bold"
                 android:inputType="text"
-                android:maxLength="20" />
+                android:maxLength="10"
+                android:digits="абвгдеёжзийклмнопрстуфхцчшщъыьэюя АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -150,20 +152,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
-            android:textColorHint="@color/color5"
             app:boxStrokeWidth="2dp"
             app:counterEnabled="true"
             app:counterMaxLength="50"
             app:errorEnabled="true"
-            app:hintTextAppearance="@style/MyHintStyle">
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textPetDescription"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/pet_description"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textColor="@color/color5"
                 android:inputType="text"
-                android:maxLength="100" />
+                android:maxLength="50"
+                android:digits="абвгдеёжзийклмнопрстуфхцчшщъыьэюя АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <ProgressBar

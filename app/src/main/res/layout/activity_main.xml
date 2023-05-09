@@ -62,21 +62,22 @@
             android:layout_marginTop="80dp"
             android:layout_marginEnd="20dp"
             android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            android:hint="@string/login_name"
             android:inputType="textPersonName"
             android:maxLength="10"
-            android:textColorHint="@color/color5"
             app:counterEnabled="true"
             app:counterMaxLength="10"
             app:errorEnabled="true"
             app:helperText="@string/help_text_login"
             app:helperTextTextColor="@color/color5"
-            app:hintTextAppearance="@style/MyHintStyle"
             app:startIconDrawable="@drawable/name"
             app:boxStrokeWidth="2dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/login"
+                android:textSize="20sp"
+                android:hint="@string/login_name"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textColor="@color/color5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:maxLength="10" />
@@ -88,19 +89,21 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="20dp"
-            android:hint="@string/password_name"
+
             android:maxLength="4"
             app:endIconMode="password_toggle"
             app:errorEnabled="true"
             app:helperText="@string/help_text_pass"
             app:helperTextTextColor="@color/color5"
-            app:hintTextAppearance="@style/MyHintText"
-            android:textColorHint="@color/color5"
             app:startIconDrawable="@drawable/password"
             app:boxStrokeWidth="2dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
+                android:textColor="@color/color5"
+                android:textSize="20sp"
+                android:hint="@string/password_name"
+                android:fontFamily="@font/comfortaa_bold"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="numberPassword" />

@@ -125,7 +125,17 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    Boolean chekPet(String id_pet) {
+    Cursor chekPet(String id_pet) {
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE _id = ? ";
+        SQLiteDatabase db2 = this.getReadableDatabase();
+        Cursor cursor = null;
+        if (db2 != null) {
+            cursor = db2.rawQuery(query, new String[] {id_pet});
+        }
+        return cursor;
+    }
+
+    Boolean chekPet2(String id_pet) {
         SQLiteDatabase db2 = this.getWritableDatabase();
         Cursor cursor = db2.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE _id = ? ", new String[] {id_pet});
         if (cursor.getCount() > 0) {
@@ -134,6 +144,27 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+
+    Cursor readLastName() {
+        String query = "SELECT * FROM " + TABLE_NAME2 + " ORDER BY " + KEY_NAME_USER + " DESC LIMIT 1";
+        SQLiteDatabase db2 = this.getReadableDatabase();
+        Cursor cursor = null;
+        if (db2 != null) {
+            cursor = db2.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+//    Cursor readOneData() {
+//        String query1 = "SELECT * FROM " + TABLE_NAME + " WHERE _id = ? ";
+//        SQLiteDatabase db1 = this.getReadableDatabase();
+//        Cursor cursor = null;
+//        if (db1 != null) {
+//            cursor = db1.rawQuery(query1, null);
+//        }
+//        return cursor;
+//    }
+
     Cursor readAllData() {
         String query = "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
