@@ -66,7 +66,9 @@ public class MainActivity extends AppCompatActivity {
                 //String remember_user_name = "";
 
                 if (!login_user.isEmpty() && !password_user.isEmpty()) {
-                    if (login_user.length() >= 2 && login_user.length() <= 10 && password_user.length() == 4){
+                    if (login_user.length() >= 2 && login_user.length() <= 10 &&
+                            password_user.length() == 4 && login_user.matches("[a-zA-Z]+")
+                            && password_user.matches("[0-9]+")){
                         Boolean chekusername = dbase.chekUsername(login_user);
                         if (!chekusername) {
                             dbase.addUser(login_user, password_user);

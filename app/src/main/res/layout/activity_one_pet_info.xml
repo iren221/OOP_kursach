@@ -247,6 +247,15 @@
                 android:textColor="@color/color3"
                 android:layout_marginTop="10dp"/>
 
+            <CheckBox
+                android:id="@+id/check_eat"
+                android:checked="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Кормлен"
+                android:textSize="30sp"
+                android:textColor="@color/color3"
+                android:fontFamily="@font/comfortaa_bold"/>
         </LinearLayout>
     </ScrollView>
 

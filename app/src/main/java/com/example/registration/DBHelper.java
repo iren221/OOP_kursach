@@ -102,9 +102,9 @@ public class DBHelper extends SQLiteOpenHelper {
         if (result == -1) {
             Toast.makeText(context, "ERROR REGISTRATION", Toast.LENGTH_SHORT).show();
         }
-        else {
-            Toast.makeText(context, "GOOD REGISTRATION", Toast.LENGTH_SHORT).show();
-        }
+//        else {
+//            //Toast.makeText(context, "GOOD REGISTRATION", Toast.LENGTH_SHORT).show();
+//        }
     }
     Boolean chekUsername(String name_user){
         SQLiteDatabase db2 = this.getWritableDatabase();

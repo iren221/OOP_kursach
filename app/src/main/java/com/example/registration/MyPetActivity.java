@@ -2,6 +2,7 @@ package com.example.registration;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,6 +32,7 @@ public class MyPetActivity extends AppCompatActivity {
     ArrayList<String> pet_photo;
     CustomAdapter customAdapter;
     //ImageView image_photo_pet;
+    SearchView pet_search;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -39,8 +41,24 @@ public class MyPetActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_pet);
 
         recyclerView = findViewById(R.id.recyclerView);
+        pet_search = findViewById(R.id.pet_search);
+        pet_search.clearFocus();
         add_btn = findViewById(R.id.btn_add);
         //image_photo_pet = findViewById(R.id.image_photo_pet);
+
+//        pet_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                customAdapter.getFilter().filter();
+//                return false;
+//            }
+//        });
+
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
