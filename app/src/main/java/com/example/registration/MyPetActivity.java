@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyPetActivity extends AppCompatActivity {
 
@@ -46,18 +47,7 @@ public class MyPetActivity extends AppCompatActivity {
         add_btn = findViewById(R.id.btn_add);
         //image_photo_pet = findViewById(R.id.image_photo_pet);
 
-//        pet_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                customAdapter.getFilter().filter();
-//                return false;
-//            }
-//        });
+
 
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +74,42 @@ public class MyPetActivity extends AppCompatActivity {
 //                Toast.makeText(MyPetActivity.this, "Вы нажали на объект" + pet_id, Toast.LENGTH_SHORT).show();
 //            }
 //        });
+
+        pet_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText);
+//                List<String> filterString = filter(pet_name, newText);
+//                customAdapter.setFilter(filterString);
+                return true;
+//                customAdapter.getFilter().filter();
+//                return false;
+            }
+        });
+    }
+
+
+
+    private void filter(String text){
+        ArrayList<String> filterString = new ArrayList<>();
+
+        for (String word:pet_name){
+            if (word.contains(text)) {
+                filterString.add(word);
+            }
+        }
+        if (pet_name.isEmpty()){
+            Toast.makeText(MyPetActivity.this, "Нет данных", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            customAdapter.setFilter(filterString);
+        }
+
     }
 
     void storeDateInArrays() {

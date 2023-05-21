@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
@@ -52,6 +53,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         this.pet_id = pet_id;
 
 
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void setFilter(List<String> filterWords){
+        pet_name = (ArrayList<String>) filterWords;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -117,6 +124,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public int getItemCount() {
         return pet_name.size();
     }
+
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 

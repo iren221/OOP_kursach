@@ -20,7 +20,7 @@
     <string name="phone">Номер телефона</string>
     <string name="btn_next_animal">Далее</string>
     <string name="prefix_phone">+7</string>
-    <string name="help_text_login">Только английские быквы</string>
+    <string name="help_text_login">Только английские буквы</string>
     <string name="help_text_pass">Ровно 4 цифры</string>
     <string name="download_photo">Загрузить фото</string>
     <string name="pet_name">Кличка</string>
