@@ -68,13 +68,6 @@ public class MyPetActivity extends AppCompatActivity {
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MyPetActivity.this));
 
-//        image_photo_pet.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(MyPetActivity.this, "Вы нажали на объект" + pet_id, Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
         pet_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -124,12 +117,6 @@ public class MyPetActivity extends AppCompatActivity {
                 final String uri = cursor.getString(8);
                 Log.i("selected_image",uri.toString());
                 pet_photo.add(uri);
-//                Bitmap bmp = BitmapFactory.decodeByteArray(image, 0 , image.length);
-//                pet_photo.add(bmp);//байтовый массив превращаем
-                // в картинку. Я не знаю, как это запихнуть в Custom Adapter
-//                imageView.setImageBitmap(bmp);
-
-
             }
         }
     }

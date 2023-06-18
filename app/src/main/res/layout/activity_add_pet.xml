@@ -92,7 +92,7 @@
                 android:textColor="@color/color5"
                 android:fontFamily="@font/comfortaa_bold"
                 android:inputType="text"
-                android:maxLength="10"
+                android:maxLength="15"
                 android:digits="абвгдеёжзийклмнопрстуфхцчшщъыьэюя АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -166,8 +166,8 @@
                 android:fontFamily="@font/comfortaa_bold"
                 android:textColor="@color/color5"
                 android:inputType="text"
-                android:maxLength="50"
-                android:digits="абвгдеёжзийклмнопрстуфхцчшщъыьэюя АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"/>
+                android:maxLength="60"
+                android:digits="абвгдеёжзийклмнопрстуфхцчшщъыьэюя АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ ,.!?;:"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <ProgressBar

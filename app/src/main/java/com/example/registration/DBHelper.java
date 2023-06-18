@@ -71,7 +71,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME2);
         onCreate(db);
     }
-    void addPet(String last_name, String name, String p, String phone, String from_time, String to_time, String pet_name, String description, String photo, String gender) {
+    void addPet(String last_name, String name, String p, String phone, String from_time,
+                String to_time, String pet_name, String description,
+                String photo, String gender) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(KEY_LASTNAME, last_name);

@@ -81,57 +81,33 @@ public class AddPetActivity extends AppCompatActivity {
                 radioButton = findViewById(radioId);
                 String gender = radioButton.getText().toString().trim();
 
-                if (!name_pet.isEmpty()) {
-                    Log.i("log", "wtf");
-                    final StorageReference ref = storageReference.child("images/"+selectedImage.getLastPathSegment());
+                if ((!name_pet.isEmpty()) && (name_pet.length() <= 10) &&
+                        (pet_des.length() <= 50)) {
+                    final StorageReference ref = storageReference.
+                            child("images/"+selectedImage.getLastPathSegment());
                     Log.i("exceptionsss", "before request");
                     ref.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener() {
                                 @Override
                                 public void onSuccess(Object o) {
                                     Log.i("exceptionsss", "allways okey");
-                                    Toast.makeText(getApplicationContext(), "Загрузка", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Загрузка",
+                                            Toast.LENGTH_SHORT).show();
                                     DBHelper dbase = new DBHelper(AddPetActivity.this);
                                     final String imageUri = selectedImage.getLastPathSegment();
-                                    dbase.addPet(last_name, name, patronymic, phone, date_from, date_to, name_pet, pet_des, imageUri, gender);
-                                    Toast.makeText(AddPetActivity.this, "Данные сохранены", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(AddPetActivity.this, MyPetActivity.class);
+                                    dbase.addPet(last_name, name, patronymic, phone, date_from,
+                                            date_to, name_pet, pet_des, imageUri, gender);
+                                    Toast.makeText(AddPetActivity.this,
+                                            "Данные сохранены", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(AddPetActivity.this,
+                                            MyPetActivity.class);
                                     startActivity(intent);
                                 }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(Exception e) {
-                                    showView();
-                                    Log.i("exceptionsss", e.getMessage());
-                                    Toast.makeText(getApplicationContext(), "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            }).addOnCanceledListener(new OnCanceledListener() {
-                                @Override
-                                public void onCanceled() {
-                                    showView();
-                                    Log.i("exceptionsss", "cancelled");
-                                }
-                            }).addOnProgressListener(new OnProgressListener() {
-                                @Override
-                                public void onProgress(@NonNull Object snapshot) {
-                                    showProgress();
-                                    Log.i("exceptionsss", "progress");
-                                }
-                            }).addOnCompleteListener(new OnCompleteListener() {
-                                @Override
-                                public void onComplete(@NonNull Task task) {
-                                    Log.i("exceptionsss", "compleete");
-                                }
                             });
-//                    Log.i("fuuucking log", "wtf2");
-//                    DBHelper dbase = new DBHelper(AddPetActivity.this);
-//                    final String imageUri = selectedImage.getLastPathSegment();
-//                    dbase.addPet(last_name, name, patronymic, phone, date_from, date_to, name_pet, pet_des, imageUri, gender);
-//                    Toast.makeText(AddPetActivity.this, "Данные сохранены", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(AddPetActivity.this, MyPetActivity.class);
-//                    startActivity(intent);
+
                 } else {
-                    Toast.makeText(AddPetActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddPetActivity.this,
+                            "Не все поля заполнены или лимит букв превышен",
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });

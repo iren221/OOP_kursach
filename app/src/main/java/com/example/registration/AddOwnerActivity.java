@@ -56,7 +56,8 @@ public class AddOwnerActivity extends AppCompatActivity {
                 String date_t = date_to.getText().toString().trim();
 
                 Intent intent1 = new Intent(AddOwnerActivity.this, AddPetActivity.class);
-                if (!name_last.isEmpty() && !name_owner.isEmpty() && !pat.isEmpty() && !ph.isEmpty() && !date_f.isEmpty() && !date_t.isEmpty()) {
+                if (!name_last.isEmpty() && !name_owner.isEmpty() && !pat.isEmpty() &&
+                        !ph.isEmpty() && !date_f.isEmpty() && !date_t.isEmpty()) {
 
                     intent1.putExtra("last_name", last_name.getText().toString().trim());
                     intent1.putExtra("name", name.getText().toString().trim());
@@ -65,24 +66,11 @@ public class AddOwnerActivity extends AppCompatActivity {
                     intent1.putExtra("date_from", date_from.getText().toString().trim());
                     intent1.putExtra("date_to", date_to.getText().toString().trim());
                     startActivity(intent1);
-//                    Intent intent = new Intent(MainActivity3.this, MainActivity4.class);
-//                    startActivity(intent);
+
                 } else {
-                    Toast.makeText(AddOwnerActivity.this, "Не все поля заполнены", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddOwnerActivity.this,
+                            "Не все поля заполнены", Toast.LENGTH_SHORT).show();
                 }
-
-
-
-//                DBHelper dbase = new DBHelper(MainActivity3.this);
-//                dbase.addPet(last_name.getText().toString().trim(),
-//                        name.getText().toString().trim(),
-//                        patronymic.getText().toString().trim(),
-//                        phone.getText().toString().trim(),
-//                        date_from.getText().toString().trim(),
-//                        date_to.getText().toString().trim());
-//
-//                //это для проверки
-//                Toast.makeText(MainActivity3.this, phone.getText().toString().trim() + "," + date_from.getText().toString().trim() + "," + date_from.getText().toString().trim(), Toast.LENGTH_SHORT).show();
             }
         });
         //период проживания животного

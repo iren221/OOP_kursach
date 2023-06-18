@@ -74,15 +74,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         final Bitmap bitmap;
         final String images = pet_photo.get(position);
         Log.e("images", images);
-        final StorageReference itemStorage = storageReference.child("images/" + pet_photo.get(position));
+        final StorageReference itemStorage = storageReference.child("images/"
+                + pet_photo.get(position));
 
         itemStorage.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
             @Override
             public void onComplete(@NonNull Task<Uri> task) {
-                //task.getResult();
-               // Toast.makeText(context, "Картинка загружена", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Картинка загружена", Toast.LENGTH_SHORT).show();
                 Glide.with(context).load(task.getResult()).into(holder.photo_pet);
-//                holder.photo_pet.setImageURI(task.getResult());
             }
         });
         holder.name_pet.setText(String.valueOf(pet_name.get(position)));

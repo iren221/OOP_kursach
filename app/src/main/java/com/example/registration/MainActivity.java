@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
                 String login_user = login.getText().toString().trim();
                 String password_user = password.getText().toString().trim();
                 DBHelper dbase = new DBHelper(MainActivity.this);
-                //String remember_user_name = "";
 
                 if (!login_user.isEmpty() && !password_user.isEmpty()) {
                     if (login_user.length() >= 2 && login_user.length() <= 10 &&
@@ -72,23 +71,29 @@ public class MainActivity extends AppCompatActivity {
                         Boolean chekusername = dbase.chekUsername(login_user);
                         if (!chekusername) {
                             dbase.addUser(login_user, password_user);
-                            Toast.makeText(MainActivity.this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this,
+                                    "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
                             myPetActivity();
                         }else {
-                            //login.setText(login_user);
                             Boolean chekuser = dbase.chekUser(login_user, password_user);
                             if (chekuser) {
                                 myPetActivity();
                             }else {
-                                Toast.makeText(MainActivity.this, "Неверный логин или пароль", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this,
+                                        "Неверный логин или пароль",
+                                        Toast.LENGTH_SHORT).show();
                             }
                         }
 
                     }else {
-                        Toast.makeText(MainActivity.this, "Некорректный логин и пароль", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this,
+                                "Некорректный логин и пароль",
+                                Toast.LENGTH_SHORT).show();
                     }
                 }else {
-                    Toast.makeText(MainActivity.this, "Все поля должны быть заполнены", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,
+                            "Все поля должны быть заполнены",
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });
